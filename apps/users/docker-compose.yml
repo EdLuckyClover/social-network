@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  # Definiere den Backend-Dienst
+  backend:
+    build: ./backend # Pfad zum Backend-Codeverzeichnis
+    ports:
+      - "3000:3000" # Mappe Container-Port 3000 auf Host-Port 3000
+    environment:
+      POSTGRES_HOST: db # Definiere Umgebungsvariable für die Datenbankverbindung
+      POSTGRES_DATABASE: mydatabase # Definiere Umgebungsvariable für den Datenbanknamen
+    volumes:
+      - ./backend:/app # Binde das lokale Codeverzeichnis in das /app-Verzeichnis des Containers ein
+  # Definiere den Datenbank-Dienst
+  db:
+    image: postgres:latest # Verwende das offizielle Postgres-Image (neuester Tag)
+    environment:
+      POSTGRES_PASSWORD: root # Setze das Passwort für den Postgres-Benutzer
+    volumes:
+      - postgres-data:/var/lib/postgresql/data # Persistenter Speicher für Datenbankdaten
+
+volumes:
+  # Definiere ein benanntes Volume für die Datenpersistenz
+  postgres-data: {}

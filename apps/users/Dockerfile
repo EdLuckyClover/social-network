@@ -6,4 +6,4 @@ ENV PORT=3333
 EXPOSE ${PORT}
 RUN npm install --production
 RUN npx prisma generate
-CMD node ./main.js
+CMD ["node", "./main.js"]
