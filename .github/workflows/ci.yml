@@ -14,8 +14,8 @@ jobs:
         with:
           node-version: 16
       - run: npm ci
-      - name: Build with NX
-        run: npx nx build social-network
+      - name: Build Users Project with NX
+        run: npx nx build users
 
-      - name: Test with NX
-        run: npx nx test social-network
+      - name: Test Users Project with NX
+        run: npx nx test users
